@@ -23,14 +23,14 @@ Output : "aaabaaa"
  */
 public class LongestPallindromeSubstr {
     public String longestPalindrome(String a) {
-        int C = 1;
-        int R = 2, iLeftMirror;
+        int C = 1;//centerPosition
+        int R = 2, iLeftMirror;//centerRightPosition, //currentLeftPosition
         int n = 2 * a.length() +1;
         int[] L = new int[n];
         L[0] = 0;
         L[1] = 1;
         int maxLPSCenter = 0, maxLPSLength = 1;
-        for(int i=2;i<n; i++){
+        for(int i=2;i<n; i++){//currentRightPosition
             L[i] = 0;
             iLeftMirror = 2*C - i;
             if(i < R)

@@ -18,6 +18,9 @@ Notes:
 
 1 ≤ N ≤ 1000
 Return answer modulo 109+7.
+
+https://www.geeksforgeeks.org/count-ways-divide-circle-using-n-non-intersecting-chords/
+
  */
 public class ChordsInaCircle {
     public int chordCnt(int A) {

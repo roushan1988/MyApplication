@@ -78,6 +78,7 @@ public class WordLadder2 {
 
             preNumSteps = currNumSteps;
 
+            // Adding a new modified word to the queue
             char[] arr = word.toCharArray();
             for(int i=0; i<arr.length; i++){
                 for(char c='a'; c<='z'; c++){

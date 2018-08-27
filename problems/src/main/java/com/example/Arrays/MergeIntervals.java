@@ -36,35 +36,38 @@ public class MergeIntervals {
             result.add(newInterval);
         }else if (newInterval.start > intervals.get(intervals.size()-1).end || newInterval.end < intervals.get(0).start)
         {
-            if (newInterval.end < intervals.get(0).start)
+            if (newInterval.end < intervals.get(0).start) // new interval is placed at the start. its mutually exclusive
             {
                 result.add(newInterval);
             }
             for (Interval interval : intervals)
             {
-                result.add(interval);
+                result.add(interval); // add the other intervals, either new interval has already been added (start) or its to be addded at the end
             }
-            if (newInterval.start > intervals.get(intervals.size() -1).end)
+            if (newInterval.start > intervals.get(intervals.size() -1).end) // added at the end
             {
                 result.add(newInterval);
             }
             return result;
         }
-        else{
+        else{ // If the new interval is to be in between the others
             for (int i = 0; i < intervals.size(); i++)
             {
                 boolean overlaps = overlap(intervals.get(i), newInterval);
                 if (!overlaps)
                 {
+                    //If it doesn't overlap with the ith interval, ith interval can be safely added to the list
+                    //Further if if it lies between ith and i+1 th interval, the new interval can be added here
                     result.add(intervals.get(i));
                     if (i < intervals.size() - 1 && newInterval.start > intervals.get(i).end && newInterval.end < intervals.get(i+1).start)
                     {
                         result.add(newInterval);
                     }
-                    continue;
+                    continue; // Continue to add remaining intervals
                 }
+                //Following code executes if the new interval overlaps
                 int st = i;
-                while (i < intervals.size() && overlaps)
+                while (i < intervals.size() && overlaps) //Check for consecutive intervals starting from st that overalap with the new one, a consolidated interval merging these would be finally added
                 {
                     i++;
                     if (i == intervals.size())

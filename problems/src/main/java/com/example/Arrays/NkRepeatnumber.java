@@ -3,6 +3,8 @@ package com.example.Arrays;
 import java.util.List;
 
 /**
+ * Given an array of of size n and a number k, find all elements that appear more than n/k times
+ * https://www.geeksforgeeks.org/given-an-array-of-of-size-n-finds-all-the-elements-that-appear-more-than-nk-times/
  * Created by shwetatrivedi1 on 2/8/17.
  */
 

@@ -26,7 +26,7 @@ public class SearchRange {
         int low=0;
         int high = a.size()-1;
         ArrayList<Integer> result = new ArrayList<>();
-        if((a.get(low)<b && a.get(high)<b) || (a.get(low)>b && a.get(high)>b)){
+        if(a.get(high)<b || a.get(low)>b){
             result.add(-1);
             result.add(-1);
             return result;

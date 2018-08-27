@@ -24,26 +24,26 @@ If there are multiple possible solutions, return the sequence which has the mini
  */
 public class MaxContiguous1Series {
     public ArrayList<Integer> maxone(ArrayList<Integer> a, int b) {
-        int wL = 0, wR = 0;
+        int windowLeft = 0, windowRight = 0;
         int bestL = 0, bestWindow = 0;
         int zeroCount = 0;
-        while (wR < a.size()){
+        while (windowRight < a.size()){
             if (zeroCount <= b)
             {
-                if (a.get(wR) == 0)
+                if (a.get(windowRight) == 0)
                     zeroCount++;
-                wR++;
+                windowRight++;
             }
             if (zeroCount > b)
             {
-                if (a.get(wL) == 0)
+                if (a.get(windowLeft) == 0)
                     zeroCount--;
-                wL++;
+                windowLeft++;
             }
-            if (wR-wL > bestWindow)
+            if (windowRight-windowLeft > bestWindow)//Update bestWindow if found
             {
-                bestWindow = wR-wL;
-                bestL = wL;
+                bestWindow = windowRight-windowLeft;
+                bestL = windowLeft;
             }
         }
         ArrayList<Integer> indices = new  ArrayList<>();

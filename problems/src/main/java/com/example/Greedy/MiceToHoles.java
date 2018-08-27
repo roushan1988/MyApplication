@@ -8,8 +8,13 @@ import java.util.Collections;
  */
 /*
 There are N Mice and N holes are placed in a straight line.
+
 Each hole can accomodate only 1 mouse.
-A mouse can stay at his position, move one step right from x to x + 1, or move one step left from x to x − 1. Any of these moves consumes 1 minute.
+
+A mouse can stay at his position, move one step right from x to x + 1, or move one step left from x to x − 1.
+
+Any of these moves consumes 1 minute.
+
 Assign mice to holes so that the time when the last mouse gets inside a hole is minimized.
 
 Example:
@@ -40,20 +45,5 @@ public class MiceToHoles {
             maxTime = Math.max(Math.abs(b.get(i) - a.get(i)),maxTime);
         }
         return maxTime;
-    }
-
-    private static boolean adjust(ArrayList<Integer>  mouse, ArrayList<Integer>  holes, int[] position,
-                                  int holeIndex, int lastMouse) {
-        if (lastMouse < 0) {
-            return false;
-        }
-        if (Math.abs(mouse.get(lastMouse) - holes.get(position[lastMouse])) > Math
-                .abs(mouse.get(lastMouse) - holes.get(holeIndex))) {
-            position[lastMouse] = holeIndex;
-            adjust(mouse, holes, position, holeIndex - 1, lastMouse - 1);
-            return true;
-        }
-
-        return false;
     }
 }

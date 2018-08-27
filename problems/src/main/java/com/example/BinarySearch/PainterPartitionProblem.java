@@ -29,6 +29,9 @@ Input :
   T : 5
   L : [1, 10]
 Output : 50
+
+https://articles.leetcode.com/the-painters-partition-problem-part-ii/
+
  */
 public class PainterPartitionProblem {
     public int paint(int a, int b, ArrayList<Integer> c) {
@@ -38,18 +41,9 @@ public class PainterPartitionProblem {
     private static long painterPartition(ArrayList<Integer> a, int k) {
         Integer[] arr = a.toArray(new Integer[a.size()]);
         Long[] b = cumulativeSum(arr);
-        //int hi = b[b.length-1];
-        int hiIndex = getHiIndex(arr, b, k);
         long hi , lo ;
         lo = Collections.max(a);
         hi = b[b.length-1];
-        /*if(hiIndex >0){
-            lo = b[hiIndex-1];
-            hi = b[hiIndex];
-        }else{
-            lo = Collections.max(a);
-            hi = b[b.length-1];
-        }*/
 
         while (lo < hi) {
             long mid = lo + (hi-lo)/2;
@@ -60,18 +54,6 @@ public class PainterPartitionProblem {
                 lo = mid+1;
         }
         return lo;
-    }
-    private static int getHiIndex(Integer[] a, Long[] b, int k){
-        int lo  = 0, hi = b.length-1;
-        while (lo<hi){
-            int mid = lo + (hi-lo)/2;
-            int required = requiredPainters(a, b[mid]);
-            if( required> k){
-                lo = mid +1;
-            }else
-                hi = mid;
-        }
-        return hi;
     }
 
     private static int requiredPainters(Integer[] a, long maxLengthPerPainter){

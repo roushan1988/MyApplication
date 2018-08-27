@@ -53,7 +53,7 @@ public class SortedPermutationRankWithRepeats {
         for(int i=start+1; i<=end; i++) {
             if(set.contains(input[i]) && input[start]>input[i]){
                 set.remove(input[i]);
-                trimmedFactorial += trimmedFactorial(input.length-start-1, countMap, input[i]);
+                trimmedFactorial = (trimmedFactorial + trimmedFactorial(input.length-start-1, countMap, input[i]))%1000003;
                 trimmedFactorial %= 1000003;
             }
         }

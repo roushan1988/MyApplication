@@ -42,12 +42,13 @@ public class JustifiedText {
             count += a.get(i).length(); // keep adding the length of words
             if(count + i-lastChosenWordPos > b){ // till no more can be accomodated with one space for each
                 int wordsCharLength = count-a.get(i).length(); //discarding last word added
-                int spacChareLen = b-wordsCharLength;
+                int spacChareLen = b-wordsCharLength; //Compute no. of spaces needed
                 int eachLen = 1;
                 int extraLen = 0;
-                if(i-1 -lastChosenWordPos>0){
-                    eachLen = spacChareLen/(i-lastChosenWordPos-1); // equal space count to be distributed
-                    extraLen = spacChareLen%(i-lastChosenWordPos-1);// extra spaces that need to be accomodated
+                int numberOfWords = i-1 -lastChosenWordPos;
+                if(numberOfWords >0){ //if there are 2 or more than 2 words
+                    eachLen = spacChareLen/(numberOfWords); // equal space count to be distributed
+                    extraLen = spacChareLen%(numberOfWords);// extra spaces that need to be accomodated
                 }
                 StringBuilder sb = new StringBuilder();
                 for(int k=lastChosenWordPos; k<i-1; k++){ //add last chosen to one less than the pos of last word for the line

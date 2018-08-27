@@ -1,6 +1,8 @@
 package com.example.Arrays;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by shwetatrivedi1 on 2/8/17.
@@ -21,6 +23,28 @@ NOTE 2: If there is still a tie, then return the segment with minimum starting i
  */
 public class MaxNonNegativeSubarray {
     public ArrayList<Integer> maxset(ArrayList<Integer> a) {
+        long maxSum = 0;
+        long newSum = 0;
+        ArrayList<Integer> maxArray = new ArrayList<Integer>();
+        ArrayList<Integer> newArray = new ArrayList<Integer>();
+        for (Integer i : a) {
+            if (i >= 0) {
+                newSum += i;
+                newArray.add(i);
+            } else {
+                newSum = 0;
+                newArray = new ArrayList<Integer>();
+            }
+            if ((maxSum < newSum) || ((maxSum == newSum) && (newArray.size() > maxArray.size()))) {
+                maxSum = newSum;
+                maxArray = newArray;
+            }
+        }
+        return maxArray;
+    }
+
+
+    public ArrayList<Integer> maxset2(ArrayList<Integer> a) {
         int size = a.size();
         long max_so_far = 0, max_ending_here = 0;
         ArrayList<Integer> maxTillNow = new ArrayList<>();

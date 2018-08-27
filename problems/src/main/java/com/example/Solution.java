@@ -1,13 +1,17 @@
 package com.example;
 
+import com.example.HeapsNdMaps.NMaxPairCombinations;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 import java.io.*;
@@ -17,28 +21,96 @@ public class Solution {
     // System.out.print(flip("0111000100010"));
     // System.out.print(flip("010"));
     public static void main(String[] args) throws Exception {
-        String A1[] = {"pear", "amleth", "dormitory", "tinsel", "dirty room", "hamlet", "listen", "silent"};
-        Integer A2[] = {30, -13, -70, 58, -34, 79, -36, 27};
-        Integer A[][] = {{3, 0, 6, 5, 0, 8, 4, 0, 0},
-                {5, 2, 0, 0, 0, 0, 0, 0, 0},
-                {0, 8, 7, 0, 0, 0, 0, 3, 1},
-                {0, 0, 3, 0, 1, 0, 0, 8, 0},
-                {9, 0, 0, 8, 6, 3, 0, 0, 5},
-                {0, 5, 0, 0, 9, 0, 6, 0, 0},
-                {1, 3, 0, 0, 0, 0, 2, 5, 0},
-                {0, 0, 0, 0, 0, 0, 0, 7, 4},
-                {0, 0, 5, 2, 0, 6, 3, 0, 0}};
-        Integer A3[] = {10, 12};
-        Character[][] b = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'}, {'6', '.', '.', '1', '9', '5', '.', '.', '.'}, {'.', '9', '8', '.', '.', '.', '.', '6', '.'}, {'8', '.', '.', '.', '6', '.', '.', '.', '3'}, {'4', '.', '.', '8', '.', '3', '.', '.', '1'}, {'7', '.', '.', '.', '2', '.', '.', '.', '6'}, {'.', '6', '.', '.', '.', '.', '2', '8', '.'}, {'.', '.', '.', '4', '1', '9', '.', '.', '5'}, {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
-        System.out.println(/*nchoc(10, new ArrayList<>(Arrays.asList(A1)))*/);
-        groupAnagrams(A1);
-        BufferedReader br = null;
-        br = new BufferedReader(new InputStreamReader(System.in));
-        String polygon = null;
-        String input = null;
-        Integer i = Integer.parseInt(br.readLine());
-        while((input=br.readLine())!=null){
-            System.out.println(input);
+        int numcols = 3;
+        int numRows = 3;
+
+        List<List<Integer>> lot = new ArrayList<>(numRows);
+
+        List<Integer> lotRow1 = new ArrayList<>(numcols);
+        lotRow1.add(1);
+        lotRow1.add(0);
+        lotRow1.add(0);
+        lot.add(lotRow1);
+        List<Integer> lotRow2 = new ArrayList<>(numcols);
+        lotRow2.add(0);
+        lotRow2.add(0);
+        lotRow2.add(0);
+        lot.add(lotRow2);
+        List<Integer> lotRow3 = new ArrayList<>(numcols);
+        lotRow3.add(1);
+        lotRow3.add(9);
+        lotRow3.add(1);
+        lot.add(lotRow3);
+        System.out.print(minimumDistance(numRows, numcols, lot));
+    }
+
+    static boolean[][] visited ;
+    static void initializeVisited(int numRows, int numColumns, List<List<Integer>> area){
+        // To keep track of visited items. Marking
+        // blocked cells as visited.
+        visited = new boolean[numRows][numColumns];
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++)
+            {
+                if (area.get(i).get(j) == 0)
+                    visited[i][j] = true;
+                else
+                    visited[i][j] = false;
+
+            }
+        }
+    }
+    static int minimumDistance(int numRows, int numColumns, List<List<Integer>> area){
+        initializeVisited(numRows, numColumns, area);
+        Node source = new Node(0, 0, 0);
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.offer(source);
+        visited[source.row][source.col] = true;
+        while (!queue.isEmpty()){
+            Node p = queue.poll();
+            // Destination found;
+            if (area.get(p.row).get(p.col) == 9)
+                return p.dist;
+            if (p.row - 1 >= 0 &&
+                    visited[p.row - 1][p.col] == false) {
+                queue.offer(new Node(p.row - 1, p.col, p.dist + 1));
+                visited[p.row - 1][p.col] = true;
+            }
+
+            // moving down
+            if (p.row + 1 < numRows &&
+                    visited[p.row + 1][p.col] == false) {
+                queue.offer(new Node(p.row + 1, p.col, p.dist + 1));
+                visited[p.row + 1][p.col] = true;
+            }
+
+            // moving left
+            if (p.col - 1 >= 0 &&
+                    visited[p.row][p.col - 1] == false) {
+                queue.offer(new Node(p.row, p.col - 1, p.dist + 1));
+                visited[p.row][p.col - 1] = true;
+            }
+
+            // moving right
+            if (p.col + 1 < numColumns &&
+                    visited[p.row][p.col + 1] == false) {
+                queue.offer(new Node(p.row, p.col + 1, p.dist + 1));
+                visited[p.row][p.col + 1] = true;
+            }
+        }
+        return -1;
+    }
+
+    static class Node {
+        int row;
+        int col;
+        int dist;
+
+        public Node(int row, int col, int dist) {
+            this.row = row;
+            this.col = col;
+            this.dist = dist;
         }
     }
 

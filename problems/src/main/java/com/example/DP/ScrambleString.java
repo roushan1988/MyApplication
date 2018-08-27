@@ -43,7 +43,8 @@ We say that “rgtae” is a scrambled string of “great”.
 
 Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1. Return 0/1 for this problem.
  */
-public class ScrambleString {
+public class
+ScrambleString {
     public int isScramble(final String a, final String b) {
         if (a.length() != b.length())
             return 0;
@@ -63,7 +64,10 @@ public class ScrambleString {
                 for (int j = L - k; j >= 0; j--) {
                     boolean canScramble = false;
                     for (int m = 1; m < k; m++) {
-                        canScramble = (scramble[m - 1][i][j] && scramble[k - m - 1][i + m][j + m]) || (scramble[m - 1][i][j + k -m] && scramble[k - m - 1][i + m][j]);
+                        canScramble = (scramble[m - 1][i][j]
+                                && scramble[k - m - 1][i + m][j + m])
+                                || (scramble[m - 1][i][j + k -m]
+                                && scramble[k - m - 1][i + m][j]);
                         if (canScramble)
                             break;
                     }

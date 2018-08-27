@@ -1,6 +1,7 @@
 package com.example.Arrays;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shwetatrivedi1 on 2/8/17.
@@ -16,6 +17,42 @@ You should return the following matrix:
  [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]
  */
 public class SpiralOrderMatrixN2 {
+
+    public ArrayList<Integer> spiralOrder(final List<ArrayList<Integer>> a) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+
+        int current = 1;
+        // Start in the corner
+        int x = 0, y = 0, dx = 1, dy = 0;
+
+        int columnSize = a.size();
+        int rowSize = a.get(0).size();
+        int spiral[][]= new int[columnSize][rowSize];
+
+        while (current <= columnSize*rowSize) {
+            // Go in a straight line
+            System.out.print(a.get(y).get(x) + " ");
+            spiral[y][x] = current++;
+            int nx = x + dx, ny = y + dy;
+
+            // When you hit the edge...
+            if (nx < 0 || nx == rowSize || ny < 0 || ny == columnSize || spiral[ny][nx] != 0) {
+                // ...turn right
+                int t = dy;
+                dy = dx;
+                dx = -t;
+            }
+            x += dx;
+            y += dy;
+        }
+
+
+
+        return result;
+    }
+
+    //OR
+
     public ArrayList<ArrayList<Integer>> generateMatrix(int a) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
         int rowstart = 0, colStart = 0, rowEnd = a, colEnd = a;
@@ -54,4 +91,5 @@ public class SpiralOrderMatrixN2 {
         }
         return result;
     }
+
 }

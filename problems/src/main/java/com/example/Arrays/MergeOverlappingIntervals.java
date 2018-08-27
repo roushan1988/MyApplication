@@ -36,6 +36,7 @@ public class MergeOverlappingIntervals {
     }
 
     public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+        //Sort the intervals according to their start time
         Collections.sort(intervals, new IntervalComparator());
         Stack<Interval> s  = new Stack<>();
         s.push(intervals.get(0));

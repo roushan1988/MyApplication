@@ -22,6 +22,9 @@ dict = ["hot","dot","dog","lot","log"]
 
 As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
 return its length 5.
+
+https://www.geeksforgeeks.org/word-ladder-length-of-shortest-chain-to-reach-a-target-word/
+
  */
 public class WordLadder1 {
     public int ladderLength(String start, String end, ArrayList<String> dictV) {
@@ -49,7 +52,7 @@ public class WordLadder1 {
                         queue.add(new WordNode(newWord, top.numSteps+1));
                         dictV.remove(newWord);
                     }
-                    arr[i]=temp;
+                    arr[i]=temp; //reset for remaining characters
                 }
             }
         }

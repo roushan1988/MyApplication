@@ -31,6 +31,7 @@ public class ReverseASection {
         ListNode first = new ListNode(0);
         ListNode second = new ListNode(0);
         ListNode p = a;
+        //Find start point = first, end point = second
         while(p != null){
             i++;
             if(i==m-1)
@@ -39,7 +40,7 @@ public class ReverseASection {
                 first.next = p;
             if(i==n){
                 second.next = p.next;
-                p.next = null;
+                p.next = null; //so that the loop quits now
             }
             p = p.next;
         }
@@ -49,6 +50,7 @@ public class ReverseASection {
         ListNode p2 = p1.next;
         p1.next = second.next;
         ListNode temp ;
+        //Actual reverse happening !
         while(p1!=null && p2!=null){
             temp = p2.next;
             p2.next = p1;

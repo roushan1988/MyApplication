@@ -6,6 +6,32 @@ import java.util.Queue;
 
 /**
  * Created by shwetatrivedi1 on 2/3/17.
+ *
+ * Knight movement on a chess board
+
+ Given any source point and destination point on a chess board, we need to find whether Knight can move to the destination or not.
+
+ The above figure details the movements for a knight ( 8 possibilities ). Note that a knight cannot go out of the board.
+
+ If yes, then what would be the minimum number of steps for the knight to move to the said point.
+ If knight can not move from the source point to the destination point, then return -1
+
+ Input:
+
+ N, M, x1, y1, x2, y2
+ where N and M are size of chess board
+ x1, y1  coordinates of source point
+ x2, y2  coordinates of destination point
+ Output:
+
+ return Minimum moves or -1
+ Example
+
+ Input : 8 8 1 1 8 8
+ Output :  6
+
+ https://www.geeksforgeeks.org/minimum-steps-reach-target-knight/
+
  */
 
 public class Knight {

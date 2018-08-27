@@ -21,24 +21,25 @@ public class CaptureRegions {
         int m=a.size();
         int n=a.get(0).size();
 
+        //First row all 0s
         for(int j=0; j<n; j++){
             if(a.get(0).get(j)=='O'){
                 bfs(a, 0, j);
             }
         }
-
+        //Last row all 0s
         for(int j=0; j<n; j++){
             if(a.get(m-1).get(j)=='O'){
                 bfs(a, m-1, j);
             }
         }
-
+        //First columns all 0s
         for(int i=0; i<m; i++){
             if(a.get(i).get(0)=='O'){
                 bfs(a, i, 0);
             }
         }
-
+        //Last Column all 0s
         for(int i=0; i<m; i++){
             if(a.get(i).get(n-1)=='O'){
                 bfs(a, i, n-1);
@@ -56,7 +57,8 @@ public class CaptureRegions {
             }
         }
     }
-
+//Any 0 node that comes in bfs traversal from one of the border 0s, cannot be captured by X.
+// All the remaining ones would be surrounded by X, and hence capturable.
     private void bfs(ArrayList<ArrayList<Character>> a, int x, int y){
         int m=a.size();
         int n=a.get(0).size();

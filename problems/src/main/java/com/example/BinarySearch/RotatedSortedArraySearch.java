@@ -44,8 +44,8 @@ public class RotatedSortedArraySearch {
             else{
                 return search(a, b, left, mid-1);
             }
-        }else if(a.get(left) == a.get(mid)){ //duplicate
-            if(a.get(mid) != a.get(right)){
+        }else if(a.get(left) == a.get(mid)){
+            if(a.get(mid) != a.get(right)){//duplicate from left to mid
                 search(a, b, mid+1, right);
             }else{
                 int res = search(a, b, left, mid-1);

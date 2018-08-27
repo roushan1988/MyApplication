@@ -35,7 +35,31 @@ Output:[3, 4]
 
 A = 3, B = 4
 */
+
 public class RepeatNdMissing {
+    static void printTwoElements(int arr[], int size)
+    {
+        int i;
+        System.out.print("The repeating element is ");
+
+        for(i = 0; i < size; i++)
+        {
+            if(arr[Math.abs(arr[i])-1] > 0)
+                arr[Math.abs(arr[i])-1] = -arr[Math.abs(arr[i])-1];
+            else
+                System.out.println(Math.abs(arr[i]));
+        }
+
+        System.out.print("And the missing element is ");
+        for(i = 0; i < size; i++)
+        {
+            if(arr[i] > 0)
+                System.out.println(i + 1);
+        }
+    }
+
+    //XOR
+
     public ArrayList<Integer> repeatedNumber(final List<Integer> a) {
         ArrayList<Integer> ret = new ArrayList<>();
         int xor = 0, x = 0, y = 0;
@@ -45,7 +69,7 @@ public class RepeatNdMissing {
         for(int i=1; i<=a.size(); i++) {
             xor ^= i;
         }
-
+        //Evaluating the rightmost set bit
         int setBit = xor & ~(xor-1);
         for(int i=0; i<a.size(); i++) {
             if((a.get(i) & setBit) != 0) {

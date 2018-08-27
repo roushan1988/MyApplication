@@ -58,4 +58,32 @@ public class AntiDiagonals {
         }
         return result;
     }
+
+    // The main function that prints given
+// matrix in diagonal order
+    static void diagonalOrder(int matrix[][]) {
+        int ROW = matrix.length;
+        int COL = matrix[0].length;
+        // There will be ROW+COL-1 lines in the output
+        for (int line = 1; line <= (ROW + COL - 1); line++) {
+
+            // Get column index of the first element in this
+            // line of output.The index is 0 for first ROW
+            // lines and line - ROW for remaining lines
+            int start_col = Math.max(0, line - ROW);
+
+            // Get count of elements in this line. The count
+            // of elements is equal to minimum of line number,
+            // COL-start_col and ROW
+            int count = Math.min(Math.min(line, (COL - start_col)), ROW);
+
+            // Print elements of this line
+            for (int j = 0; j < count; j++)
+                System.out.print(matrix[Math.min(ROW, line) - j - 1]
+                        [start_col + j] + " ");
+
+            // Print elements of next diagonal on next line
+            System.out.println();
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.example.HeapsNdMaps;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by shwetatrivedi1 on 2/9/17.
@@ -67,15 +68,11 @@ public class LRUCache {
             setHead(old);
         }else{
             Node created = new Node(key, value);
-            if(map.size()>=capacity){
+            if(map.size()>=capacity) {
                 map.remove(end.key);
                 remove(end);
-                setHead(created);
-
-            }else{
-                setHead(created);
             }
-
+            setHead(created);
             map.put(key, created);
         }
     }

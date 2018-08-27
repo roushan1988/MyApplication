@@ -22,6 +22,45 @@ Note: No extra memory is allowed.
  */
 public class MatrixMedian {
     public int findMedian(ArrayList<ArrayList<Integer>> A) {
+        int n = A.size();
+        if(n == 0) return -1;
+        int m = A.get(0).size();
+        int lo = 0;
+        int hi = Integer.MAX_VALUE;
+        int x = 1;
+        while(lo <= hi) {
+            int mid = (lo+hi)/2;
+            if(isLessThanHalf(A, mid)) {
+                lo = mid+1;
+            } else {
+                x = mid;
+                hi = mid-1;
+            }
+        }
+        return x;
+    }
+    boolean isLessThanHalf(ArrayList<ArrayList<Integer>> a, int num) {
+        int N = a.size();
+        int M = a.get(0).size();
+        int count = 0;
+
+        for(int i = 0; i < N; i++) {
+            count += getCount(a.get(i), num);
+        }
+        return count < (N*M)/2 + 1;
+    }
+    int getCount(ArrayList<Integer> a, int n) {
+        int lo = 0;
+        int hi = a.size()-1;
+        while(lo <= hi) {
+            int mid = (lo+hi)/2;
+            if(a.get(mid) > n) hi = mid-1;
+            else lo = mid+1;
+        }
+        return lo;
+    }
+
+   /* public int findMedian2(ArrayList<ArrayList<Integer>> A) {
         int mn = A.get(0).get(0), mx = A.get(0).get(0), n = A.size(), m = A.get(0).size();
         for (int i = 0; i < n; ++i) {
             if (A.get(i).get(0) < mn) {
@@ -51,12 +90,12 @@ public class MatrixMedian {
                     index++;
             }
 
-            /*int index = Collections.binarySearch(A.get(i), x+1);
+            *//*int index = Collections.binarySearch(A.get(i), x+1);
             if(index <0){
                 index = -index-1;
-            }*/
+            }*//*
             count +=(index);
         }
         return count;
-    }
+    }*/
 }

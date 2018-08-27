@@ -39,9 +39,9 @@ public class SteppingNumbers {
             int steppingNext1 = steppingNum*10 + lastDigit-1;
             int steppingNext2 = steppingNum*10 + lastDigit+1;
             if(lastDigit == 0)
-                bfsQ.add(steppingNext2);
+                bfsQ.add(steppingNext2); //drop steppingNext1
             else if(lastDigit ==9)
-                bfsQ.add(steppingNext1);
+                bfsQ.add(steppingNext1); //drop steppingNext2
             else{
                 bfsQ.add(steppingNext1);
                 bfsQ.add(steppingNext2);

@@ -34,6 +34,39 @@ No operation can give us more than three 1s in final string. So, we return empty
 http://www.geeksforgeeks.org/maximize-number-0s-flipping-subarray/
  */
 public class Flip {
+    // A Kadane's algorithm based solution to find maximum
+    // number of 0s by flipping a subarray.
+    public static int findMaxZeroCount(int arr[], int n)
+    {
+        // Initialize count of zeros and maximum difference
+        // between count of 1s and 0s in a subarray
+        int orig_zero_count = 0;
+
+        // Initiale overall max diff for any subarray
+        int max_diff = 0;
+
+        // Initialize current diff
+        int curr_max = 0;
+
+        for (int i = 0; i < n; i ++)
+        {
+            // Count of zeros in original array (Not related
+            // to Kadane's algorithm)
+            if (arr[i] == 0)
+                orig_zero_count ++;
+
+            // Value to be considered for finding maximum sum
+            int val = (arr[i] == 1)? 1 : -1;
+
+            // Update current max and max_diff
+            curr_max = Math.max(val, curr_max + val);
+            max_diff = Math.max(max_diff, curr_max);
+        }
+        max_diff = Math.max(0, max_diff);
+
+        return orig_zero_count + max_diff;
+    }
+
     public ArrayList<Integer> flip(String A) {
         ArrayList<Integer> result  = new ArrayList<>(2);
         int ansL = -1, ansR = -1;

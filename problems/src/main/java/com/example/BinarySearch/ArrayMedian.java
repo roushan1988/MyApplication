@@ -31,6 +31,7 @@ public class ArrayMedian {
         return medianUtil(a, a.size(), b, b.size());
     }
 
+    //b is the bigger array
     private static double medianUtil(final List<Integer> a, int n, final List<Integer> b, int m){
         if(n==0)
             return median(b, m);
