@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * Created by shwetatrivedi1 on 2/5/17.
  */
 /*
-Given a grid of size m * n, lets assume you are starting at (1,1) and your goal is to reach (m,n). At any instance, if you are on (x,y), you can either go to (x, y + 1) or (x + 1, y).
+Given a grid of size m * n, lets assume you are starting at (1,1) and your goal is to reach (m,n).
+At any instance, if you are on (x,y), you can either go to (x, y + 1) or (x + 1, y).
 
 Now consider if some obstacles are added to the grids. How many unique paths would there be?
 An obstacle and empty space is marked as 1 and 0 respectively in the grid.
@@ -31,7 +32,9 @@ public class UniquePathsInGrid {
         int n = a.get(0).size();
         if((a.get(0).get(0) == 1) || (a.get(m-1).get(n-1) == 1))
             return 0;
+        // create a 2D-matrix and initializing with value 0
         int[][] dp = new int[m][n];
+        //initializing the left corner if no obstacle there
         dp[0][0] = 1;
 
         for(int i = 1; i < m; i++){

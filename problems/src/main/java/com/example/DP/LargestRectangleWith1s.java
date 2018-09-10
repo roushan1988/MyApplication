@@ -22,8 +22,10 @@ Output : 4
 
 As the max area rectangle is created by the 2x2 rectangle created by (0,1), (0,2), (1,1) and (1,2)
 
+    https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
+
  */
-public class MaxRectangleInBinaryMatrix {
+public class LargestRectangleWith1s {
 
     public int maximalRectangle(ArrayList<ArrayList<Integer>> a) {
         int m = a.size();
@@ -42,7 +44,7 @@ public class MaxRectangleInBinaryMatrix {
         }
 
         for (int i = 0; i < m; i++) {
-            int area = largestRectangleArea(height[i]);
+            int area = maxHist(height[i]);
             if (area > maxArea) {
                 maxArea = area;
             }
@@ -51,21 +53,7 @@ public class MaxRectangleInBinaryMatrix {
         return maxArea;
     }
 
-    private int maxAreaHistogram(int[] height){
-        int i=0, max = 0;
-        Stack<Integer> stack = new Stack<>();
-        while (i<height.length){
-            if(stack.isEmpty() || height[stack.peek()] <= height[i])
-                stack.push(i++);
-            else{
-                int top = stack.pop();
-                max = Math.max(height[top] * (stack.isEmpty() ? i:i-stack.peek()-1), max);
-            }
-        }
-        return max;
-    }
-
-    public int largestRectangleArea(int[] height) {
+    public int maxHist(int[] height) {
         if (height == null || height.length == 0) {
             return 0;
         }

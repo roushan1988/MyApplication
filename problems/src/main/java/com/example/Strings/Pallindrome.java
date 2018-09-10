@@ -13,7 +13,7 @@ public class Pallindrome {
         for(int i = 0; i < n/2; i++){
             if(a.charAt(i) != a.charAt(n-1-i))
                 return 0;
-        }
+        }a.su
         return 1;
     }
 }

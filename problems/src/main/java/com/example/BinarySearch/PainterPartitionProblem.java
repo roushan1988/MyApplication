@@ -62,7 +62,9 @@ public class PainterPartitionProblem {
         for(int i=0; i<a.length; i++){
             totalPainted+=a[i];
             if(totalPainted >maxLengthPerPainter){
+                //u need a new painter as this painter's limit exceeded maxLengthPerPainter
                 numPainters++;
+                //resetting new painter's totalPainted lenth
                 totalPainted = a[i];
             }
         }

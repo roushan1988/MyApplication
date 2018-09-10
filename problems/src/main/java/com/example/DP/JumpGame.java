@@ -22,7 +22,7 @@ public class JumpGame {
         int next = a.size() - 1;
         for(int i = a.size() - 2; i >= 0; i--){
             if(a.get(i) >= next - i) //means next is reachable from i
-                next = i; // now check for new next
+                next = i; // now check for new next (move backPointerFromBestIndex)
         }
         return next == 0 ? 1 : 0;
     }

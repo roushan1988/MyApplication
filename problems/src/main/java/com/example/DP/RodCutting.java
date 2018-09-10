@@ -48,7 +48,7 @@ So, we return [2, 1, 5].
 public class RodCutting {
     public ArrayList<Integer> ar, ans;
     public long dp[][];
-    public int parent[][], n;
+    public int bestIndexHolderGrid[][], n;
 
     public ArrayList<Integer> rodCut(int A, ArrayList<Integer> B) {
         B.add(0, 0);
@@ -58,7 +58,7 @@ public class RodCutting {
         ar = new ArrayList<>();
         ans = new ArrayList<>();
         dp = new long[n][n];
-        parent = new int[n][n];
+        bestIndexHolderGrid = new int[n][n];
         ar.clear();
         ar.addAll(B);
 
@@ -66,7 +66,7 @@ public class RodCutting {
             for (int j = 0; j < n; j++)
                 dp[i][j] = -1;
         rec(0, n -1);
-        back(0, n -1);
+        backPointerFromBestIndex(0, n -1);
 
         return ans;
     }
@@ -76,7 +76,7 @@ public class RodCutting {
             return 0;
 
         long ret = dp[l][r];
-        int bestind = 0;
+        int bestIndexToCutRodFromlTor = 0;
         if (ret != -1)
             return ret;
 
@@ -84,20 +84,20 @@ public class RodCutting {
         for (int i = l + 1; i < r; i++){
             long p = rec(l, i) + rec(i, r) + ar.get(r) - ar.get(l);
             if (p < ret){
-                bestind = i;
+                bestIndexToCutRodFromlTor = i;
                 ret = p;
             }
         }
-        parent[l][r] = bestind;
+        bestIndexHolderGrid[l][r] = bestIndexToCutRodFromlTor;
         dp[l][r] = ret;
         return ret;
     }
 
-    public void back(int l, int r){
+    public void backPointerFromBestIndex(int l, int r){
         if (l + 1 >= r)
             return;
-        ans.add(ar.get(parent[l][r]));
-        back(l, parent[l][r]);
-        back(parent[l][r], r);
+        ans.add(ar.get(bestIndexHolderGrid[l][r]));
+        backPointerFromBestIndex(l, bestIndexHolderGrid[l][r]);
+        backPointerFromBestIndex(bestIndexHolderGrid[l][r], r);
     }
 }

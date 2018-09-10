@@ -65,13 +65,13 @@ public class SearchRange {
             while (low<=high){
                 mid = (low+high)/2;
                 if(a.get(mid).equals(b) && a.get(mid+1)>b){
-                    result.add(mid);
+                    result.add(mid);    // break loop only if this is the leftmost entry
                     break loop2;
                 }
-                if(a.get(mid)<=b){
+                if(a.get(mid)<=b){ //move Left
                     low = mid+1;
                 }
-                if(a.get(mid)>b){
+                if(a.get(mid)>b){ //move Right
                     high = mid-1;
                 }
             }

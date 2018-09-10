@@ -23,23 +23,32 @@ http://www.geeksforgeeks.org/construction-of-longest-increasing-subsequence-usin
  */
 public class LongestIncreasingSubsequence {
     public int lis(final List<Integer> a) {
+
+        // Add boundary case, when array size is one
         int[] subsequence   = new int[a.size()];
-        int len =1;
+
+        int len =1; // always points empty slot
         subsequence[0] = a.get(0);
         for (int i = 1; i < a.size(); i++)
         {
             if (a.get(i) < subsequence[0])
+                // new smallest value
                 subsequence[0] = a.get(i);
 
             else if (a.get(i) > subsequence[len-1])
+                // A[i] wants to extend largest subsequence
                 subsequence[len++] = a.get(i);
 
             else
+                // A[i] wants to be current end candidate of an existing
+                // subsequence. It will replace ceil value in tailTable
                 subsequence[findIndex(subsequence, -1, len-1, a.get(i))] = a.get(i);
         }
         return len;
     }
 
+    // Binary search (note boundaries in the caller)
+    // A[] is ceilIndex in the caller
     static int findIndex(int A[], int l, int r, int key)
     {
         while (r - l > 1)

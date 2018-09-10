@@ -2,6 +2,14 @@ package com.example.DP;
 
 /**
  * Created by shwetatrivedi1 on 2/3/17.
+ *
+ *          https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+ *
+ *          F2n-1 = Fn2 + Fn-12
+
+            F2n = (Fn-1 + Fn+1)Fn = (2Fn-1 + Fn)Fn
+
+
  */
 
 public class Stairs {
@@ -21,7 +29,7 @@ public class Stairs {
             return f[n];
 
         int k = ((n & 1) != 0)? (n+1)/2 : n/2;
-                                //odd                                 even
+                                //odd                                           even
         f[n] = ((n & 1) != 0)? (fib(k)* fib(k) + fib(k-1)* fib(k-1)) : (2* fib(k-1) + fib(k))* fib(k);
 
         return f[n];

@@ -21,6 +21,7 @@ Operation 2: Insert i.
 public class EditDistance {
     public int minDistance(String a, String b) {
         int m = a.length(), n = b.length();
+        // Create a table to store results of subproblems
         int[][] dp = new int[m + 1][n + 1];
 
         if(m == 0){
@@ -30,8 +31,15 @@ public class EditDistance {
             return m;
         }
 
+        // Fill d[][] in bottom up manner
+
+        // If second string is empty, only option is to
+        // remove all characters of second string
         for(int i=1; i<=m; i++)
             dp[i][0] = i; //i deletes
+
+        // If first string is empty, only option is to
+        // insert all characters of second string
 
         for(int i=1; i<=n; i++)
             dp[0][i] = i; // i inserts
@@ -41,9 +49,13 @@ public class EditDistance {
                 int replace = 0, insert = 0, delete = 0;
                 delete = dp[i][j+1] + 1;
                 insert = dp[i+1][j] + 1;
+                // If last characters are same, ignore last char
+                // and recur for remaining string
                 if(a.charAt(i) == b.charAt(j))
                     replace = dp[i][j];
                 else
+                    // If the last character is different, consider all
+                    // possibilities and find the minimum
                     replace = dp[i][j] + 1;
                 dp[i+1][j+1] = Math.min(replace, Math.min(insert, delete));
             }

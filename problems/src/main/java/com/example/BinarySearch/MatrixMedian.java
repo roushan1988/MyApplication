@@ -19,6 +19,8 @@ A = [1, 2, 3, 3, 5, 6, 6, 9, 9]
 
 Median is 5. So, we return 5.
 Note: No extra memory is allowed.
+
+https://www.geeksforgeeks.org/find-median-row-wise-sorted-matrix/
  */
 public class MatrixMedian {
     public int findMedian(ArrayList<ArrayList<Integer>> A) {
@@ -49,6 +51,7 @@ public class MatrixMedian {
         }
         return count < (N*M)/2 + 1;
     }
+
     int getCount(ArrayList<Integer> a, int n) {
         int lo = 0;
         int hi = a.size()-1;

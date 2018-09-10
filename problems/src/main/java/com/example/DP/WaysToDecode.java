@@ -17,6 +17,9 @@ Example :
 Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
 
 The number of ways decoding "12" is 2.
+
+        https://www.geeksforgeeks.org/count-possible-decodings-given-digit-sequence/
+
  */
 public class WaysToDecode {
     public int numDecodings(String a) {
@@ -55,3 +58,5 @@ public class WaysToDecode {
         return dp[a.length()-1];
     }
 }
+
+// Time Complexity of the above solution is O(n) and it requires O(n) auxiliary space.

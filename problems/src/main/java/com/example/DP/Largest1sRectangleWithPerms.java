@@ -19,11 +19,17 @@ At present we can see that max rectangle satisfying the criteria mentioned in th
 1 0 0
 
 Now In this grid, first column is column 1, second column is column 3 and third column is column 2 from the original given grid. Now, we can see that if we calculate the max area rectangle, we get max area as 1 * 2 = 2 which is bigger than the earlier case. Hence 2 will be the answer in this case.
+
+    https://www.geeksforgeeks.org/find-the-largest-rectangle-of-1s-with-swapping-of-columns-allowed/
+
  */
 
 import java.util.ArrayList;
 
 // https://www.geeksforgeeks.org/find-the-largest-rectangle-of-1s-with-swapping-of-columns-allowed/
+// Time complexity of above solution is O(R * (R + C)) where R is number of rows and C is number of columns in input matrix.
+//
+//Extra space: O(R * C)
 public class Largest1sRectangleWithPerms {
     public int solve(ArrayList<ArrayList<Integer>> A) {
         int R = A.size();

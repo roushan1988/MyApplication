@@ -75,8 +75,8 @@ public class BuyStocksMaxKTxn {
             int prevDiff = Integer.MIN_VALUE;
             for (int j = 1; j < n; j++)
             {
-                prevDiff = Math.max(prevDiff, profit[i-1][j-1] - price[j-1]);
-                profit[i][j] = Math.max(profit[i][j-1], price[j] + prevDiff);
+                prevDiff = Math.max(prevDiff, profit[i-1][j-1] - price[j-1]); //Buy at j-1
+                profit[i][j] = Math.max(profit[i][j-1], price[j] + prevDiff); //Sell at j
             }
         }
 

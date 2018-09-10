@@ -24,6 +24,8 @@ The knight’s health has no upper bound.
 Any room can contain threats or power-ups,
  even the first room the knight enters and the bottom-right room where the princess is imprisoned.
  */
+//We maintain a 2-D table.
+// dp[i][j] is the minimum health value before he enters (i,j). h[0][0] is the value of the answer.
 public class DungeonPrincess {
     public int calculateMinimumHP(ArrayList<ArrayList<Integer>> a) {
         int m = a.size();

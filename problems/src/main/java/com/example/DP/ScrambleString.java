@@ -42,16 +42,20 @@ r   g  ta  e
 We say that “rgtae” is a scrambled string of “great”.
 
 Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1. Return 0/1 for this problem.
+
+    https://www.programcreek.com/2014/05/leetcode-scramble-string-java/
+
  */
-public class
-ScrambleString {
+public class ScrambleString {
     public int isScramble(final String a, final String b) {
+        //If lengths unequal they cannot be scrambled
         if (a.length() != b.length())
             return 0;
         if (a.equals(b))
             return 1;
 
         int L = a.length();
+        //scramble[l][i][j] = true if a[i ... i+l-1] and b[j ... j+l-1] are scramble strings
         boolean[][][] scramble = new boolean[L][L][L];
         for (int i = 0; i < L; i++) {
             for (int j = 0; j < L; j++)
@@ -66,8 +70,8 @@ ScrambleString {
                     for (int m = 1; m < k; m++) {
                         canScramble = (scramble[m - 1][i][j]
                                 && scramble[k - m - 1][i + m][j + m])
-                                || (scramble[m - 1][i][j + k -m]
-                                && scramble[k - m - 1][i + m][j]);
+                                && scramble[k - m - 1][i + m][j]
+                                || (scramble[m - 1][i][j + k -m]);
                         if (canScramble)
                             break;
                     }
